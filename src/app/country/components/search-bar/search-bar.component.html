@@ -1,0 +1,20 @@
+<form (ngSubmit)="search()" autocomplete="off">
+  <input
+    type="text"
+    class="form-control"
+    name="searchBox"
+    [(ngModel)]="condition"
+    (input)="keyPressed()"
+    [placeholder]="placeholder"
+  />
+</form>
+
+<div *ngIf="error" class="alert alert-danger alert-dismissible mt-4">
+  Country named '{{ condition }}' not found.
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="close"
+  ></button>
+</div>

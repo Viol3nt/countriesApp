@@ -1,0 +1,18 @@
+<h2>By Country</h2>
+<hr />
+<div class="row">
+  <div class="col">
+    <app-search-bar
+      [error]="error"
+      (onEnter)="populateCountries($event)"
+      (onDebounce)="suggestions($event)"
+      placeholder="Search Country..."
+    ></app-search-bar>
+  </div>
+</div>
+
+<div *ngIf="countries.length > 0" class="row">
+  <div class="col">
+    <app-results-table [countries]="countries"></app-results-table>
+  </div>
+</div>

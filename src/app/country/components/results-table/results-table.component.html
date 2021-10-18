@@ -1,0 +1,27 @@
+<table class="table table-hover table-borderless">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Flag</th>
+      <th>Name</th>
+      <th>Population</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countries; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <img class="small-flag" [src]="country.flags.svg" />
+      </td>
+      <td>{{ country.name.common }}</td>
+      <td>{{ country.population | number }}</td>
+      <td>
+        <!-- <a [routerLink]="['/bycountry', country.maps.googleMaps]"
+          >Show Country</a
+        > -->
+        <a href="{{ country.maps.googleMaps }}" target="blank"> Show Country</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
