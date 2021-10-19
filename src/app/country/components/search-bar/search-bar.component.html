@@ -9,6 +9,20 @@
   />
 </form>
 
+<ul *ngIf="showSuggestions" class="list-group">
+  <li
+    *ngFor="let country of suggestedCountries"
+    class="list-group-item list-group-item-action"
+  >
+    <a class="nav-link" [routerLink]="['/showcountry', country.cca2]">
+      {{ country.name.common }}</a
+    >
+  </li>
+  <li class="list-group-item list-group-item-action" (click)="search()">
+    <a class="nav-link"> Search "{{ condition }}"</a>
+  </li>
+</ul>
+
 <div *ngIf="error" class="alert alert-danger alert-dismissible mt-4">
   Country named '{{ condition }}' not found.
   <button

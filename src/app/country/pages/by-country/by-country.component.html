@@ -1,18 +1,24 @@
-<h2>By Country</h2>
-<hr />
-<div class="row">
-  <div class="col">
-    <app-search-bar
-      [error]="error"
-      (onEnter)="populateCountries($event)"
-      (onDebounce)="suggestions($event)"
-      placeholder="Search Country..."
-    ></app-search-bar>
-  </div>
-</div>
+<div class="animate__animated animate__backInDown animate__faster">
+  <h2>By Country</h2>
+  <hr />
 
-<div *ngIf="countries.length > 0" class="row">
-  <div class="col">
-    <app-results-table [countries]="countries"></app-results-table>
+  <div class="row">
+    <div class="col">
+      <app-search-bar
+        [error]="error"
+        [suggestedCountries]="suggestedCountries"
+        (onEnter)="populateCountries($event)"
+        (onDebounce)="suggestions($event)"
+        placeholder="Search Country..."
+      ></app-search-bar>
+    </div>
+  </div>
+
+  <hr />
+
+  <div *ngIf="countries.length > 0" class="row">
+    <div class="col">
+      <app-results-table [countries]="countries"></app-results-table>
+    </div>
   </div>
 </div>

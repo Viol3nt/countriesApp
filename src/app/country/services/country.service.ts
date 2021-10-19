@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Country } from '../interfaces/countries.interface';
 
 @Injectable({
@@ -8,21 +9,19 @@ import { Country } from '../interfaces/countries.interface';
 })
 export class CountryService {
   private _apiUrl: string = 'https://restcountries.com/v3.1';
-
   constructor(private http: HttpClient) {}
 
-  searchCountry(condition: string): Observable<Country[]> {
-    const url = `${this._apiUrl}/name/${condition}`;
-    return this.http.get<Country[]>(url);
+  search(condition: string, method: string): Observable<Country[]> {
+    const params = new HttpParams().set(
+      'fields',
+      'name,cca3,cca2,flags,population'
+    );
+    const url = `${this._apiUrl}/${method}/${condition}`;
+    return this.http.get<Country[]>(url, { params }).pipe(tap(console.log));
   }
 
-  searchCapital(condition: string): Observable<Country[]> {
-    const url = `${this._apiUrl}/capital/${condition}`;
+  searchById(condition: string): Observable<Country[]> {
+    const url = `${this._apiUrl}/alpha/${condition}`;
     return this.http.get<Country[]>(url);
-  }
-
-  getCountryById(id: string): Observable<Country> {
-    const url = `${this._apiUrl}/idd/${id}`;
-    return this.http.get<Country>(url);
   }
 }

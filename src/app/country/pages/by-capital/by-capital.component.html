@@ -1,17 +1,19 @@
-<h2>By Capital</h2>
-<hr />
-<div class="row">
-  <div class="col">
-    <app-search-bar
-      [error]="error"
-      (onEnter)="populateCountries($event)"
-      placeholder="Search Capital..."
-    ></app-search-bar>
+<div class="animate__animated animate__backInDown animate__faster">
+  <h2>By Capital</h2>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <app-search-bar
+        [error]="error"
+        (onEnter)="populateCountries($event)"
+        placeholder="Search Capital..."
+      ></app-search-bar>
+    </div>
   </div>
-</div>
 
-<div *ngIf="countries.length > 0" class="row">
-  <div class="col">
-    <app-results-table [countries]="countries"></app-results-table>
+  <div *ngIf="countries.length > 0" class="row">
+    <div class="col">
+      <app-results-table [countries]="countries"></app-results-table>
+    </div>
   </div>
 </div>

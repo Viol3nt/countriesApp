@@ -15,7 +15,7 @@ export class ByCapitalComponent {
 
   populateCountries(condition: string) {
     this.error = false;
-    this.countryService.searchCapital(condition).subscribe(
+    this.countryService.search(condition, 'capital').subscribe(
       (res) => {
         this.countries = res;
       },

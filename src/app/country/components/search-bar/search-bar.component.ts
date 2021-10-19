@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Country } from '../../interfaces/countries.interface';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,9 +13,11 @@ export class SearchBarComponent implements OnInit {
   @Output() onDebounce: EventEmitter<string> = new EventEmitter<string>();
   @Input() error: boolean = false;
   @Input() placeholder: string = '';
+  @Input() suggestedCountries: Country[] = [];
 
   condition: string = '';
   debouncer: Subject<string> = new Subject();
+  showSuggestions: boolean = false;
 
   constructor() {}
 
@@ -24,10 +27,12 @@ export class SearchBarComponent implements OnInit {
     });
   }
   search(): void {
+    this.showSuggestions = false;
     this.onEnter.emit(this.condition);
   }
 
   keyPressed() {
+    this.showSuggestions = true;
     this.debouncer.next(this.condition);
   }
 }
